@@ -1,0 +1,323 @@
+1. Implement a linux server system with an ip address 192.168.0.45 and
+update the hostname as ServerXX (XX stands for rollno)
+->
+Set IP Address:
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+In the file, set:
+DEVICE=eth0
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=192.168.0.45
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.1
+Save and exit vi.
+Update the hostname:
+vi /etc/sysconfig/network
+Add or update the line:
+HOSTNAME=ServerXX
+
+                                 
+2. Implement a linux client system with an ip address 192.168.0.24 and
+update
+the hostname as ClientXX(XX stands for rollno)
+-> similar to above, just do the changes in clone
+
+                         
+3. Restart the basic services essential for any network configurations.
+->
+service network restart
+service iptables restart
+service sshd restart
+
+                         
+4. Add a normal user and login using any of the server terminal and resume
+back to the GNOME terminal
+->
+Create a user:
+useradd newuser
+passwd newuser
+Login as the user:
+su - newuser
+Switch back to GNOME terminal: Press Ctrl + D or type:
+exit
+
+                         
+5. Create a folder with your name and give full access rights to that folder in
+->
+Create a folder:
+mkdir /home/newuser/myfolder
+Give full permissions:
+chmod 777 /home/newuser/myfolder
+
+                         
+6. Create a folder with another name and give only read, write access to that
+folder in client
+to be done using linux commands
+->
+Create the folder on the client:
+mkdir /home/newuser/otherfolder
+Set read/write permissions (no execute):
+chmod 664 /home/newuser/otherfolder
+
+                         
+7. Use vi editor, and replace text with vi without using insert mode:
+Single character
+Single String
+Occurrences of a string
+->
+Replace single character: In command mode, move the cursor to the character and type:
+r <new_character>
+Replace single string: In command mode, type:
+:%s/old_string/new_string/
+Replace all occurrences: In command mode, type:
+:%s/old_string/new_string/g
+
+                         
+8. Illustrate the steps to the examiner to move a job from foreground to
+Background
+->
+Run a command:
+ping google.com or ip
+Move to background: Press Ctrl + Z, then type:
+bg
+
+                         
+9. Use top command and then change the niceness of the top process
+Priority
+->
+Run top and find the PID.
+Change the priority:
+renice -n 10 -p <PID>
+(here 10 is the priority we are assigning)
+
+                         
+10. Schedule a cron job and send an email message every 5 minutes from
+normal user account to root user account.
+->
+Edit cron:
+crontab -e
+Add the cron job (sends email every 5 minutes):
+*/5 * * * * echo "Test email" | mail -s "Subject" root@localhost
+
+                         
+11. Create symbolic link and hard link of a file and restore the original file.
+Show the difference in removing the symbolic link file and hard link file to
+the examiner.
+->
+Create a file called original.txt: in the following directory -
+/home/user/original.txt
+echo "This is the original file."
+Now, create a symbolic link to this file:
+ln -s /home/user/original.txt /home/user/symlink.txt
+Now, create a hard link to this file:
+ln /home/user/original.txt /home/user/hardlink.txt
+Difference in removal:
+Removing a symlink does not affect the original file:
+rm /home/user/symlink.txt
+Removing a hard link affects the file only if it’s the last link:
+rm /home/user/hardlink.txt
+
+                         
+12. Write shell scrip for pattern matching.
+->
+echo "Enter the file name:"
+read filename
+echo "Enter the pattern to search:"
+read pattern
+if grep -q "$pattern" "$filename"; then
+echo "Pattern found!"
+else
+echo "Pattern not found!"
+fi
+
+                         
+13. Create a user and change the password expiration policies using
+Commands.
+->
+1. Create a user:
+# Replace 'username' with the desired username
+useradd username
+2. Change password expiration policy:
+# Set password expiration to 30 days
+chage -M 30 username
+
+                         
+14.Write a script that uses pattern matching to start searching a string.
+->
+echo "Enter the string to search:"
+read search_string
+echo "Enter the file to search in:"
+read file
+if grep -q "$search_string" "$file"; then
+echo "String found!"
+else
+echo "String not found!"
+fi
+
+                         
+15. Find all files on your server that have a size greater than 500 MB.
+->
+find / -type f -size +500M
+
+                         
+16. Do the following changes in Grub file
+b. Write the path where the grub file is located.
+c. Change the timeout and title of the system.
+->
+a. Write the path where the grub file is located:
+# The GRUB configuration file for Red Hat 6 is located at:
+/boot/grub/grub.conf
+b. Change the timeout and title of the system:
+1. Edit the GRUB file:
+vi /boot/grub/grub.conf
+2. Change the following lines:
+● Timeout:
+timeout=10 # Change the timeout value (in seconds)
+● Title:
+title My Custom Linux # Update the title to your desired name
+
+                         
+17. Writing a Script to Monitor Activity on the Apache Web Server. The script
+should also start the Apache Web server if it is not running.
+->
+if ! pgrep httpd > /dev/null; then
+echo "Apache is not running. Starting Apache..."
+service httpd start
+else
+echo "Apache is running."
+fi
+
+                         
+18. a)Create a backup of the /tmp directory in an archive with
+the name
+/tmp.tar.
+b) Extract the same file in /tmp2 directory.
+->
+a) Create a backup of the /tmp directory in an archive:
+tar -cvf /tmp/tmp.tar /tmp
+b) Extract the same file in the /tmp2 directory:
+mkdir -p /tmp2
+tar -xvf /tmp/tmp.tar -C /tmp2
+
+
+19. Create a user ‘xyz’, a group ‘g1’ using command. Add user ‘xyz’ to group
+‘G1’.
+->
+Create the group g1:
+groupadd g1
+Create the user xyz and add the user to group g1:
+useradd -G g1 xyz
+This command creates the user xyz and adds the user to the group g1 at the same time.
+Set the password for user xyz:
+passwd xyz
+
+
+20) Create two directories /data/sales and /data/support. Change the group
+ownership of these directories to group ‘g1’.
+->
+Create the directories:
+mkdir -p /data/sales /data/support
+Change the group ownership to g1:
+chown :g1 /data/sales /data/support
+
+
+21. perform check for disk usage and I/O performance
+->
+Check disk usage:
+df -h
+This will display the available disk space on all mounted filesystems.
+Check specific directory usage:
+du -sh /path/to/directory
+Check I/O performance using iostat (if the package is installed):
+iostat
+
+                                    
+22. Write a command to list all the processes currently running on your
+system and redirect the output to a text file
+->
+List all processes and redirect to a file:
+ps -aux > processes.txt
+
+                                    
+23. Use vi editor to perform the following:
+Append a text after the current position of the cursor:
+● Press a, type your text, and press Esc to exit insert mode.
+Open a new line under the current position of the cursor:
+● Press o, type your text, and press Esc to exit insert mode.
+Delete a single character:
+● Position the cursor over the character and press x.
+Delete a complete line:
+● Press dd while on the line you want to delete.
+Delete from the current position up to the end of the line:
+● Press D
+
+                                    
+24. Archive the contents of /etc and extract the archived contents to tmp directory
+Directory
+->
+Archive the contents of /etc:
+tar -cvf etc_backup.tar /etc
+Extract the archived contents to /tmp directory:
+tar -xvf etc_backup.tar -C /tmp
+
+                                    
+25. Create four users and add them to two different groups Tyit and College.
+->
+Create the groups:
+groupadd Tyit
+groupadd College
+Create four users and assign them to both groups:
+useradd -G Tyit,College user1
+useradd -G Tyit,College user2
+useradd -G Tyit,College user3
+useradd -G Tyit,College user4
+Verify the groups assigned to each user:
+groups user1
+groups user2
+groups user3
+groups user4
+                                    
+26. Grant permissions to these groups such that only the users will be able to
+write from these directories others will be denied.
+->
+Create the directories:
+mkdir /home/tyit_directory
+mkdir /home/college_directory
+Set ownership and permissions:
+For the Tyit group directory:
+chown :Tyit /home/tyit_directory
+chmod 770 /home/tyit_directory
+For the College group directory:
+chown :College /home/college_directory
+chmod 770 /home/college_directory
+
+                                    
+27. Apply advanced permission to group Tyit such that the members of Tyit
+group are able to share files in a shared group directory
+->
+Create a shared directory:
+mkdir /home/shared_tyit_directory
+Set group ownership and apply SGID:
+chown :Tyit /home/shared_tyit_directory
+chmod 2770 /home/shared_tyit_directory
+
+                                    
+28. Use chattr command to show effect of any two attributes.
+->
+The chattr command can be used to apply extended file attributes. Below are two
+commonly used attributes: i (immutable) and a (append-only).
+1. Immutable Attribute (i):
+Apply the immutable attribute:
+touch /home/tyit_directory/important_file
+chattr +i /home/tyit_directory/important_file
+Effect: The file cannot be modified, deleted, or renamed.
+Test the effect:
+rm /home/tyit_directory/important_file # This will be denied
+2. Append-only Attribute (a):
+Apply the append-only attribute:
+touch /home/tyit_directory/log_file
+chattr +a /home/tyit_directory/log_file
+Effect: You can only append to the file, and it cannot be deleted or modified otherwise.
+Test the effect:
+echo "New log entry" >> /home/tyit_directory/log_file # Works
+echo "Overwrite entry" > /home/tyit_directory/log_file # Fails
