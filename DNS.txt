@@ -1,0 +1,36 @@
+DNS
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+(In file)
+BOOTPROTO=none--->static
+Change ip and DNS1
+
+vim /etc/hosts
+192.168.10.0 server.abc.com
+vim/etc/sysconfig/network 
+rpm -qa bind
+vim /etc/named.conf
+
+vim /etc/named.rfc1912.zones
+(In file)
+Line 31,32,33,34 file"reverse.zone"
+
+cd /var/named/
+cp named.localhost forward.some
+cp named.localhost reverse.zone
+ls
+
+vim forward.zone
+(In file)
+server.abc.com. root.server.abc.com.
+server IN A 192.168.10.0
+# AAAAQ
+
+vim reverse.zone (use last no. Of user IP)
+
+chgrp named forward.zone
+chgrp named reverse.zone
+service named start 
+dig server.abc.com
+dig -x 192.168.10.0
+nslookup
