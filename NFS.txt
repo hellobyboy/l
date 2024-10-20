@@ -1,0 +1,33 @@
+NFS
+
+rpm -qa | grep nfs
+ifconfig
+cd /home/
+mkdir servernfs1
+cd servernfs
+cat > newfile
+
+vi /etc/exports
+(In files)
+/home/servernfs * (rw , sync)
+
+service nfs restart 
+service iptables stop
+service iptables status
+showmount -e 192.168.10.00
+service vsftpd stop
+service vsftpd status 
+chmod -R 777 /home/servernfs1/
+wate
+
+(In clone)
+cd /home/
+ls
+mount -t nfs 192.168.10.00:/home/servernfs/ /home/clientnfs/
+ls
+cd servernfs/
+ls
+cat newfile or vi newfile
+
+(In files)
+nfs configuration

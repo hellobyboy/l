@@ -1,0 +1,20 @@
+SSH
+Configure SSH server and connect it with SSH client.
+
+#rpm -qa | grep sssd
+
+#cat > sshfile
+(in file)
+this is ssh file 
+ctrl + d
+
+ping (ip of clone) -c 5
+
+(in clone)
+#rpm -qa | grep sssd
+#ssh root@(ip of parent) 
+password of parent root
+
+cd /root/Desktop
+#ls
+#cat sshfile

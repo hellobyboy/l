@@ -1,0 +1,23 @@
+Apache
+
+cd /root
+rpm -qa | grep httpd
+service httpd start
+cd /home 
+mkdir -p var/www/html
+
+vim /var/www/html/index.html
+(in file)
+
+<html>
+<head>
+<title>Web Server</title>
+</head>
+<body>
+<h1>Aapche Server</h1>
+</body>
+</html>
+
+service httpd restart
+
+In browser URL type (http://IP/)

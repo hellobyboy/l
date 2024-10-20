@@ -1,0 +1,35 @@
+mail server
+
+sendmail
+
+postfix
+#ifconfig
+#rpm -q postfix
+#hostname
+#vi /etc/hosts  >www.abc.com
+
+#vim /etc/postfix/main.cf
+(in file)
+76   = www.abc.com
+83   = abc.com
+99   un
+113  un
+164  un
+264  = 192.168.10.0/24, 127.0.0.0/8
+
+#service postfix start
+#service postfix restart
+#useradd t1
+#passwd t1
+new passwd
+retype new passwd
+
+#mail t1@www.abc.com
+add subject
+ctrl +d
+
+#su - t1
+#whoami
+#mail
+& >press 1 to mail open
+& >press q to exit

@@ -1,0 +1,22 @@
+FTP
+
+#ifconfig
+#cd /root
+#rpm -qa | grep vsftpd
+#cd /home
+#chkconfig vsftpd on
+#chkconfig --list | grep ftp
+#cd /var/ftp/pub/
+#cat > filename
+
+#vi /etc/vsftpd/vsftpd.conf
+12  anonymous_enable=YES
+15  local_enable=YES
+27  anon_upload_enable=YES
+109 listen=YES
+
+#servise vsftpd restart
+#cd /home
+#ftp ip address
+
+In browser URL type (ftp://IP/)
