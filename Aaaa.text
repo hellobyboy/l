@@ -1,0 +1,8 @@
+1
+recent
+1.1 delet
+2
+regedit
+2.1  path 
+Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU 
+2.2 delet
