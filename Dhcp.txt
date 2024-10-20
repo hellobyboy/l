@@ -1,0 +1,24 @@
+DHCP
+rpm -qa | grep dhcp ? if not install package
+
+hostname
+setup
+
+#vi /etc/dhcp/dhcpd.conf
+# cp /user/share/doc/dhcp-4.1.1/dhcpd.conf.sample /ect/dhcp/dhcpd.conf
+type ? y
+
+#vi /etc/dhcp/dhcpd.conf
+(In file)
+line 18 un, 27,28 cm, 32,33 ip
+
+
+service dhcpd start
+service dhcpd restart
+chkconfig dhcpd on
+chkconfig --list dhcpd
+
+
+In Clone Machine
+ifconfig
+vi /etc/sysconfig/network-scripts/ifcfg-ethh0

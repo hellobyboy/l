@@ -1,0 +1,30 @@
+rpm -qa | grep samba
+cd /home/
+mkdir tyit00
+cd tyit00
+touch f1 f2 f3
+cat > test
+\
+cd
+chmod -R 777 tyit00/
+vim /etc/samba/smb.conf
+
+(In file)
+Line 74-80 set ur IP
+Line 289-295 change the path to ur's like tyit00
+printable=yes
+write list=Admin Administrator
+
+service smb restart
+testparm
+service iptables stop
+service iptables status
+setenforce 0
+getsebool -a | grep samba
+setsebool samba_enable_home_dirs=1
+getsebool -a | grep samba
+service smb restart
+useradd test1
+smbpasswd -a test1
+smbclient //192.168.10.00/home/tyit00/ -U test1
+(if not working then service nmb restart)
